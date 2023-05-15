@@ -2,8 +2,11 @@ package dev.camila.request.credit.system.service
 
 import dev.camila.request.credit.system.entity.Credit
 import dev.camila.request.credit.system.exception.BusinessException
+import dev.camila.request.credit.system.exception.DateException
 import dev.camila.request.credit.system.repository.CreditRepository
+import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 import java.util.*
 
 @Service
@@ -16,8 +19,15 @@ class CreditService(
         credit.apply {
             customer = customerService.findById(credit.customer?.id!!)
         }
-
-        return creditRepository.save(credit);
+        val currentDate = LocalDate.now();
+        return if (credit.dayFirstInstallment < currentDate.plusMonths(3)) {
+            creditRepository.save(credit)
+        } else {
+            throw DateException(
+                "The date of the first installment" +
+                        " must be no later than three months from today's date"
+            )
+        }
     }
 
     override fun findAllByCustomer(customerId: Long): List<Credit> = creditRepository.findAllByCustomerId(customerId)

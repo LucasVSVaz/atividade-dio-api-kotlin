@@ -82,5 +82,18 @@ class RestExceptionHandler {
             )
         )
     }
+
+    @ExceptionHandler(DateException::class)
+    fun handlerValidException(ex: DateException): ResponseEntity<ExceptionDetails> {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(
+            ExceptionDetails(
+                title = "Bad request! The date of the first installment exceeds the limit",
+                timestamp = LocalDateTime.now(),
+                status = HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                exception = ex.javaClass.toString(),
+                details = mutableMapOf(ex.cause.toString() to ex.message)
+            )
+        )
+    }
 }
 
