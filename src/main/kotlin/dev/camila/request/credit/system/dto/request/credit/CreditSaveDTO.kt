@@ -11,6 +11,7 @@ import java.time.LocalDate
 
 data class CreditSaveDTO(
     @field:NotNull(message = "Credit value is required")
+    @field:Min(value = 1, message = "The minimum credit amount is $1")
     val creditValue: BigDecimal,
     @field:Future(message = "Must be informed at a future date")
     @field:DateTimeFormat(pattern = "yyyy-MM-dd")
