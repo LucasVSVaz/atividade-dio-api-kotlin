@@ -8,8 +8,8 @@ class CustomerTestCreationTest {
 
     @Test
     fun `Creating a Customer entity`() {
-        val customer = EntityFactory.getCustomerFactory();
-        val address = EntityFactory.getAddressFactory();
+        val customer = EntityFactory.getCustomer();
+        val address = EntityFactory.getAddress();
 
         assertEquals(1, customer.id?.toInt());
         assertEquals("Test", customer.firstName);

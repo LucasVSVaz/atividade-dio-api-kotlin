@@ -10,7 +10,7 @@ class CustomerUpdateDTOCreationTest {
 
     @Test
     fun `Creating a CustomerUpdateDTO`() {
-        val customer = EntityFactory.getCustomerFactory();
+        val customer = EntityFactory.getCustomer();
         val customerUpdate = DTORequestFactory.getCustomerUpdateDTO();
         val customerToEntity = customerUpdate.toEntity(customer);
 

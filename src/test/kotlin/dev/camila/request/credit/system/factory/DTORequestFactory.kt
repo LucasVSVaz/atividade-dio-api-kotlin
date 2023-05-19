@@ -13,7 +13,7 @@ object DTORequestFactory {
             creditValue = BigDecimal(100.0),
             dayFirstInstallment = LocalDate.now().plusDays(15),
             numberOfInstallment = 3,
-            customerId = 1
+            customerId = 1L
         )
     }
 
@@ -32,11 +32,11 @@ object DTORequestFactory {
 
     fun getCustomerUpdateDTO(): CustomerUpdateDTO {
         return CustomerUpdateDTO(
-            firstName = EntityFactory.getCustomerFactory().firstName,
-            lastName = EntityFactory.getCustomerFactory().lastName,
-            income = EntityFactory.getCustomerFactory().income,
-            zipCode = EntityFactory.getCustomerFactory().address.zipCode,
-            street = EntityFactory.getCustomerFactory().address.street
+            firstName = EntityFactory.getCustomer().firstName,
+            lastName = EntityFactory.getCustomer().lastName,
+            income = EntityFactory.getCustomer().income,
+            zipCode = EntityFactory.getCustomer().address.zipCode,
+            street = EntityFactory.getCustomer().address.street
         )
     }
 }

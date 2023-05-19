@@ -12,7 +12,7 @@ class CreditTestCreationTest {
 
     @Test
     fun `Creating a Credit entity`() {
-        val credit = EntityFactory.getCreditFactory();
+        val credit = EntityFactory.getCredit();
 
         assertEquals(1, credit.id?.toInt());
         assertNotNull(credit.creditCode)

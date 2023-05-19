@@ -10,28 +10,27 @@ import java.util.*
 
 object EntityFactory {
 
-    fun getCustomerFactory(): Customer {
+    fun getCustomer(): Customer {
         return Customer().apply {
-            id = 1;
+            id = 1L;
             firstName = "Test";
             lastName = "Test";
             cpf = "24088461614";
             email = "test@gmail.com";
             password = "test123";
-            address = getAddressFactory();
-            credit = listOf(getCreditFactory());
+            address = getAddress();
             income = BigDecimal(3000.0)
         }
     }
 
-    fun getAddressFactory(): Address {
+    fun getAddress(): Address {
         return Address().apply {
             zipCode = "38400000";
             street = "Street Test"
         }
     }
 
-    fun getCreditFactory(): Credit {
+    fun getCredit(): Credit {
 
         return Credit(
             id = 1,
@@ -39,7 +38,8 @@ object EntityFactory {
             creditValue = BigDecimal(500.0),
             dayFirstInstallment = LocalDate.now().plusMonths(1),
             numberOfInstallment = 2,
-            status = Status.IN_PROGRESS
+            status = Status.IN_PROGRESS,
+            customer = this.getCustomer()
         )
     }
 }

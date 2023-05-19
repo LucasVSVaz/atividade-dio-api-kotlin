@@ -8,7 +8,7 @@ class AddressCreationTest {
 
     @Test
     fun `Creating an Address entity`() {
-        val address = EntityFactory.getAddressFactory();
+        val address = EntityFactory.getAddress();
 
         assertEquals("38400000", address.zipCode)
         assertEquals("Street Test", address.street)
